@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimecastZA — Crime Hotspot Forecasting</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>CrimecastZA</h1>
+        <p class="subtitle">South African Crime Hotspot Forecasting System</p>
+    </header>
+
+    <div class="controls">
+        <div class="filter-group">
+            <label for="province-filter">Province</label>
+            <select id="province-filter">
+                <option value="">All Provinces</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="category-filter">Crime Category</label>
+            <select id="category-filter">
+                <option value="">All Categories</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="risk-filter">Min Risk Level</label>
+            <select id="risk-filter">
+                <option value="0.2">1 — Low</option>
+                <option value="0.4">2 — Moderate</option>
+                <option value="0.6">3 — Medium</option>
+                <option value="0.8" selected>4 — High</option>
+                <option value="1.0">5 — Extreme</option>
+            </select>
+        </div>
+        <button id="apply-filters" class="btn">Apply Filters</button>
+    </div>
+
+    <div class="main-content">
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="legend">
+                <h4>Risk Score</h4>
+                <div class="legend-item"><span class="dot" style="background:#1a9641"></span> 1 — Low</div>
+                <div class="legend-item"><span class="dot" style="background:#a6d96a"></span> 2 — Moderate</div>
+                <div class="legend-item"><span class="dot" style="background:#ffffbf"></span> 3 — Medium</div>
+                <div class="legend-item"><span class="dot" style="background:#fdae61"></span> 4 — High</div>
+                <div class="legend-item"><span class="dot" style="background:#d7191c"></span> 5 — Extreme</div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-panel">
+                <h3 id="trend-title">Crime Trend</h3>
+                <canvas id="trend-chart"></canvas>
+                <button id="export-csv" class="btn btn-sm" style="display:none">Export CSV</button>
+            </div>
+            <div class="chart-panel">
+                <h3>Top Stations by Risk</h3>
+                <canvas id="bar-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div id="stats-bar" class="stats-bar">
+        <span id="stat-stations">Stations: —</span>
+        <span id="stat-hotspots">Hotspots: —</span>
+        <span id="stat-category">Category: —</span>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="api.js"></script>
+    <script src="map.js"></script>
+    <script src="charts.js"></script>
+    <script src="filters.js"></script>
+    <script src="export.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
